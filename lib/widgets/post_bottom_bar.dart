@@ -71,56 +71,50 @@ class post_bottom_bar extends StatelessWidget {
           SizedBox(
             height: 20,
           ),
-          Row(
-            children: [
-              Padding(
-                padding: EdgeInsets.only(right: 5),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(15),
-                  child: Image.asset(
-                    "images/city5.jpg",
-                    fit: BoxFit.cover,
-                    width: 140,
-                    height: 90,
+          Container(
+            height: 75, // veya istediğiniz bir değer
+            child: ListView(
+              scrollDirection: Axis.horizontal,
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(right: 5),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(15),
+                    child: Image.asset(
+                      "images/city5.jpg",
+                      fit: BoxFit.cover,
+                      width: 140,
+                      height: 90,
+                    ),
                   ),
                 ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(right: 5),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(15),
-                  child: Image.asset(
-                    "images/city4.jpg",
-                    fit: BoxFit.cover,
-                    width: 150,
-                    height: 90,
+                Padding(
+                  padding: EdgeInsets.only(right: 5),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(15),
+                    child: Image.asset(
+                      "images/city4.jpg",
+                      fit: BoxFit.cover,
+                      width: 150,
+                      height: 90,
+                    ),
                   ),
                 ),
-              ),
-              Container(
-                alignment: Alignment.center,
-                width: 150,
-                height: 90,
-                margin: EdgeInsets.only(right: 5),
-                decoration: BoxDecoration(
-                  color: Colors.black,
-                  borderRadius: BorderRadius.circular(15),
-                  image: DecorationImage(
-                    image: AssetImage("images/city6.jpg"),
-                    fit: BoxFit.cover,
-                    opacity: 0.4,
+                Padding(
+                  padding: EdgeInsets.only(right: 5),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(15),
+                    child: Image.asset(
+                      "images/city4.jpg",
+                      fit: BoxFit.cover,
+                      width: 150,
+                      height: 90,
+                    ),
                   ),
                 ),
-                child: Text(
-                  "10+",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 22,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-              ),
-            ],
+                // Diğer widget'lar
+              ],
+            ),
           ),
           SizedBox(
             height: 15,

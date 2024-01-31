@@ -35,7 +35,7 @@ class HomeAppBar extends StatelessWidget {
                 color: Color(0xFFF65959),
               ),
               Text(
-                "New York, USA",
+                "İstanbul, Türkiye",
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
               ),
             ],

@@ -18,6 +18,11 @@ class _MyAppState extends State<MyApp> {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
   }
 
+  // _welcomeScreen metodu eklendi
+  Widget _welcomeScreen() {
+    return WelcomeScreen();
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -25,7 +30,7 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
         scaffoldBackgroundColor: Color(0xFFEDF2F6),
       ),
-      home: welcomeScreen(),
+      home: _welcomeScreen(), // _welcomeScreen metodu kullanıldı
     );
   }
 }
