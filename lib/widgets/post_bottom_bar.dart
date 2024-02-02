@@ -105,7 +105,7 @@ class post_bottom_bar extends StatelessWidget {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(15),
                     child: Image.asset(
-                      "images/city4.jpg",
+                      "images/city2.jpg",
                       fit: BoxFit.cover,
                       width: 150,
                       height: 90,
@@ -157,7 +157,7 @@ class post_bottom_bar extends StatelessWidget {
                     ],
                   ),
                   child: Text(
-                    "Book Now",
+                    "Book Ndddow",
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 26,

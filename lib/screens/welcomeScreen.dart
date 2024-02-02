@@ -86,7 +86,6 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
 
   @override
   void initState() {
-    //backgroundImage = "https://i.ibb.co/yXMZQQR/bg.jpg";
     backgroundImage = "https://mfiles.alphacoders.com/597/597930.jpg";
     _initializeData();
     super.initState();
@@ -129,7 +128,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "İstanbul",
+                  "Istanbul",
                   style: TextStyle(
                     color: FullTextColor,
                     fontSize: 35,

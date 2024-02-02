@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HomeAppBar extends StatelessWidget {
   @override
@@ -9,7 +10,9 @@ class HomeAppBar extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           InkWell(
-            onTap: () {},
+            onTap: () {
+              Navigator.pop(context);
+            },
             child: Container(
               padding: EdgeInsets.all(10),
               decoration: BoxDecoration(
@@ -23,7 +26,7 @@ class HomeAppBar extends StatelessWidget {
                 borderRadius: BorderRadius.circular(15),
               ),
               child: Icon(
-                Icons.sort_rounded,
+                Icons.arrow_back,
                 size: 28,
               ),
             ),
@@ -35,7 +38,7 @@ class HomeAppBar extends StatelessWidget {
                 color: Color(0xFFF65959),
               ),
               Text(
-                "İstanbul, Türkiye",
+                "  İstanbul, Türkiye",
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
               ),
             ],
@@ -43,7 +46,7 @@ class HomeAppBar extends StatelessWidget {
           InkWell(
             onTap: () {},
             child: Container(
-              padding: EdgeInsets.all(10),
+              padding: EdgeInsets.all(5),
               decoration: BoxDecoration(
                 color: Colors.white,
                 boxShadow: [
@@ -54,10 +57,27 @@ class HomeAppBar extends StatelessWidget {
                 ],
                 borderRadius: BorderRadius.circular(15),
               ),
-              child: Icon(
-                Icons.search,
-                size: 28,
-              ),
+              child: IconButton(
+                  onPressed: () {
+                    //EMAİL GÖNDERME KODLARI PATH YAZAN KISIMDA SİZİN MAİLİNİZE GELECEGİ VE KONU OLARAK DA UYGULAMA HAKKINDA BİR YORUMUM VAR YAZAR
+                    String? encodeQueryParameters(Map<String, String> params) {
+                      return params.entries
+                          .map((MapEntry<String, String> e) =>
+                              '${Uri.encodeComponent(e.key)}=${Uri.encodeComponent(e.value)}')
+                          .join('&');
+                    }
+
+                    final Uri emailLaunchUri = Uri(
+                      scheme: 'mailto',
+                      path: '222016746@stu.istinye.edu.tr',
+                      query: encodeQueryParameters(<String, String>{
+                        'subject': "Uygulama Hakkında Bir Yorumum Var",
+                      }),
+                    );
+
+                    launchUrl(emailLaunchUri);
+                  },
+                  icon: Icon(Icons.mail_outline, size: 21)),
             ),
           ),
         ],
