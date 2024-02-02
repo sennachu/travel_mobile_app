@@ -69,16 +69,13 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   }
 
   Future<void> _initializeData() async {
-    print("çalışıo");
     var model = {};
 
     final String x = await postData("loginImageList", model);
 
-    // x içindeki veriyi kullanma örneği
     final Map<String, dynamic> responseData = json.decode(x);
-    print(responseData["data"][0]["Image"]);
+
     backgroundImage = responseData["data"][0]["Image"];
-    TextHeader = "Test 23";
     FullTextColor = parseColor(responseData["data"][0]["ImageTextColor"]);
 
     buttonColor = FullTextColor;
@@ -89,25 +86,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
     backgroundImage = "https://mfiles.alphacoders.com/597/597930.jpg";
     _initializeData();
     super.initState();
-
-    print(backgroundImage);
   }
-  /*
-            backgroundImage = data['backgroundImage'];
-        enjoyTextColor = _parseColor(data['enjoyTextColor']);
-        worldTextColor = _parseColor(data['worldTextColor']);
-        descriptionTextColor = _parseColor(data['descriptionTextColor']);
-        buttonColor = _parseColor(data['buttonColor']);
-*/
-
-  //final List<dynamic> data = responseData['data'];
-/*
-    backgroundImage = "https://i.ibb.co/yXMZQQR/bg.jpg";
-    enjoyTextColor = Colors.black;
-    worldTextColor = Colors.black;
-    descriptionTextColor = Colors.black;
-    buttonColor = Colors.black;
-  */
 
   @override
   Widget build(BuildContext context) {
@@ -188,21 +167,6 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             ),
           ),
         ),
-      ),
-    );
-  }
-}
-
-class HomeScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    // Burada ana ekranın tasarımını oluşturabilirsiniz.
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Home Screen'),
-      ),
-      body: Center(
-        child: Text('Welcome to the Home Screen!'),
       ),
     );
   }
