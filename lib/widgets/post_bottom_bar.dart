@@ -1,6 +1,51 @@
 import 'package:flutter/material.dart';
+import 'package:dio/dio.dart';
+import 'dart:convert';
 
 class post_bottom_bar extends StatelessWidget {
+  final String photo;
+  final String name;
+  final String puan;
+  final String Aciklama;
+  final VoidCallback? onShareBusinessInfo;
+
+  const post_bottom_bar({
+    Key? key,
+    required this.photo,
+    required this.name,
+    required this.puan,
+    required this.Aciklama,
+    this.onShareBusinessInfo,
+  }) : super(key: key);
+  Future<void> sendBusinessInfo() async {
+    var headers = {
+      'X-APIKEY': '1234',
+      'PKEY': 'NSK',
+      'Content-Type': 'application/json'
+    };
+    var data = json.encode({
+      "WPPhoneNumber": "905051539449",
+      "MsgContent":
+          "Mekan Bilgileri: [NSK] Adı: ${name} 🏰 [NSK] Açıklaması: ${Aciklama} 📝 [NSK] Puanı: ${puan} ⭐️",
+      "ImageUrl": photo
+    });
+    var dio = Dio();
+
+    try {
+      var response = await dio.post(
+        'https://nsk.neyfer.tech/sendWp',
+        options: Options(
+          headers: headers,
+        ),
+        data: data,
+      );
+
+      print("Response: ${response.data}");
+    } catch (e) {
+      print("Error: $e");
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -28,7 +73,7 @@ class post_bottom_bar extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "City Name, Country",
+                      name,
                       style: TextStyle(
                         fontSize: 23,
                         fontWeight: FontWeight.w600,
@@ -42,7 +87,7 @@ class post_bottom_bar extends StatelessWidget {
                           size: 25,
                         ),
                         Text(
-                          "4.5",
+                          puan,
                           style: TextStyle(
                             fontWeight: FontWeight.w600,
                           ),
@@ -60,7 +105,7 @@ class post_bottom_bar extends StatelessWidget {
           Padding(
             padding: EdgeInsets.all(5),
             child: Text(
-              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
+              Aciklama,
               style: TextStyle(
                 color: Colors.black54,
                 fontSize: 16,
@@ -71,93 +116,33 @@ class post_bottom_bar extends StatelessWidget {
           SizedBox(
             height: 20,
           ),
-          Container(
-            height: 75, // veya istediğiniz bir değer
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              children: [
-                Padding(
-                  padding: EdgeInsets.only(right: 5),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(15),
-                    child: Image.asset(
-                      "images/city5.jpg",
-                      fit: BoxFit.cover,
-                      width: 140,
-                      height: 90,
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(right: 5),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(15),
-                    child: Image.asset(
-                      "images/city4.jpg",
-                      fit: BoxFit.cover,
-                      width: 150,
-                      height: 90,
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(right: 5),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(15),
-                    child: Image.asset(
-                      "images/city2.jpg",
-                      fit: BoxFit.cover,
-                      width: 150,
-                      height: 90,
-                    ),
-                  ),
-                ),
-                // Diğer widget'lar
-              ],
-            ),
+          SizedBox(
+            height: 75,
           ),
           SizedBox(
-            height: 15,
+            height: 90,
           ),
           Container(
             height: 80,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Container(
-                  padding: EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: Colors.white,
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black26,
-                        blurRadius: 4,
-                      ),
-                    ],
-                  ),
-                  child: Icon(
-                    Icons.bookmark_outline,
-                    size: 40,
-                  ),
-                ),
-                Container(
-                  padding: EdgeInsets.symmetric(
-                    vertical: 15,
-                    horizontal: 25,
-                  ),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: Colors.redAccent,
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black26,
-                        blurRadius: 4,
-                      ),
-                    ],
+                ElevatedButton(
+                  onPressed: onShareBusinessInfo,
+                  style: ElevatedButton.styleFrom(
+                    padding: EdgeInsets.symmetric(
+                      vertical: 15,
+                      horizontal: 25,
+                    ),
+                    backgroundColor: Colors.redAccent,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    shadowColor: Colors.black26,
+                    elevation: 4,
                   ),
                   child: Text(
-                    "Book Ndddow",
+                    "İşletme Bilgilerini Paylaş",
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 26,

@@ -4,11 +4,15 @@ import 'package:travel_app/screens/postScreen.dart';
 class CityCard extends StatelessWidget {
   final String cityName;
   final String photo;
+  final String puan;
+  final String Aciklama;
 
   const CityCard({
     Key? key,
     required this.cityName,
     required this.photo,
+    required this.puan,
+    required this.Aciklama,
   }) : super(key: key);
 
   @override
@@ -18,7 +22,12 @@ class CityCard extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => postScreen(),
+            builder: (context) => postScreen(
+              photo: photo,
+              text: cityName,
+              puan: puan,
+              Aciklama: Aciklama,
+            ),
           ),
         );
       },
@@ -32,7 +41,7 @@ class CityCard extends StatelessWidget {
           color: Colors.black,
           borderRadius: BorderRadius.circular(15),
           image: DecorationImage(
-            image: AssetImage(photo), // city1.jpg, city2.jpg, vb. dosya adları
+            image: NetworkImage(photo),
             fit: BoxFit.cover,
             opacity: 0.7,
           ),

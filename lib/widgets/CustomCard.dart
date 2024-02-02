@@ -5,12 +5,13 @@ class CustomCard extends StatelessWidget {
   final String photo;
   final String text;
   final String puan;
-
+  final String Aciklama;
   const CustomCard({
     Key? key,
     required this.photo,
     required this.text,
     required this.puan,
+    required this.Aciklama,
   }) : super(key: key);
 
   @override
@@ -24,7 +25,8 @@ class CustomCard extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => postScreen(),
+                  builder: (context) => postScreen(
+                      photo: photo, text: text, puan: puan, Aciklama: Aciklama),
                 ),
               );
             },
@@ -34,7 +36,7 @@ class CustomCard extends StatelessWidget {
                 color: Colors.black,
                 borderRadius: BorderRadius.circular(15),
                 image: DecorationImage(
-                  image: AssetImage(photo),
+                  image: NetworkImage(photo),
                   fit: BoxFit.cover,
                   opacity: 0.8,
                 ),
