@@ -6,13 +6,16 @@ class CityCard extends StatelessWidget {
   final String photo;
   final String puan;
   final String Aciklama;
-
+  final double lat;
+  final double lon;
   const CityCard({
     Key? key,
     required this.cityName,
     required this.photo,
     required this.puan,
     required this.Aciklama,
+    required this.lat,
+    required this.lon,
   }) : super(key: key);
 
   @override
@@ -27,6 +30,8 @@ class CityCard extends StatelessWidget {
               text: cityName,
               puan: puan,
               Aciklama: Aciklama,
+              lat: lat,
+              lon: lon,
             ),
           ),
         );

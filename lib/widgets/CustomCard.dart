@@ -6,12 +6,16 @@ class CustomCard extends StatelessWidget {
   final String text;
   final String puan;
   final String Aciklama;
+  final double lat;
+  final double lon;
   const CustomCard({
     Key? key,
     required this.photo,
     required this.text,
     required this.puan,
     required this.Aciklama,
+    required this.lat,
+    required this.lon,
   }) : super(key: key);
 
   @override
@@ -26,7 +30,13 @@ class CustomCard extends StatelessWidget {
                 context,
                 MaterialPageRoute(
                   builder: (context) => postScreen(
-                      photo: photo, text: text, puan: puan, Aciklama: Aciklama),
+                    photo: photo,
+                    text: text,
+                    puan: puan,
+                    Aciklama: Aciklama,
+                    lat: lat,
+                    lon: lon,
+                  ),
                 ),
               );
             },

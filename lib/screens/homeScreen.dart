@@ -1,8 +1,8 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:travel_app/widgets/CityCard.dart';
 import 'package:travel_app/widgets/CustomCard.dart';
+
 import 'package:travel_app/widgets/home_bottom_bar.dart';
 import '../widgets/home_app_bar.dart';
 import 'package:dio/dio.dart';
@@ -85,6 +85,9 @@ class _HomeScreenState extends State<homeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // final userProvider = Provider.of<UserProvider>(context);
+
+    // print(userProvider.userName);
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(90.0),
@@ -109,6 +112,8 @@ class _HomeScreenState extends State<homeScreen> {
                             cityName: district["DistrictName"],
                             puan: district["DistrictRate"].toString(),
                             Aciklama: district["DistrictDescription"],
+                            lat: district["DistrictLat"],
+                            lon: district["DistrictLon"],
                           ),
                       ],
                     ),
@@ -161,6 +166,8 @@ class _HomeScreenState extends State<homeScreen> {
                       text: place["PlaceName"],
                       puan: place["PlaceRate"].toString(),
                       Aciklama: place["PlaceDescription"],
+                      lat: place["PlaceLat"],
+                      lon: place["PlaceLon"],
                     ),
                 ],
               ),

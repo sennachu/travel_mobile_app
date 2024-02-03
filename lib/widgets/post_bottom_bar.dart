@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
+
 import 'dart:convert';
+
+import 'package:travel_app/widgets/map_Screen.dart';
 
 class post_bottom_bar extends StatelessWidget {
   final String photo;
   final String name;
   final String puan;
   final String Aciklama;
+  final double lat;
+  final double lon;
   final VoidCallback? onShareBusinessInfo;
 
   const post_bottom_bar({
@@ -15,6 +20,8 @@ class post_bottom_bar extends StatelessWidget {
     required this.name,
     required this.puan,
     required this.Aciklama,
+    required this.lat,
+    required this.lon,
     this.onShareBusinessInfo,
   }) : super(key: key);
   Future<void> sendBusinessInfo() async {
@@ -111,6 +118,15 @@ class post_bottom_bar extends StatelessWidget {
                 fontSize: 16,
               ),
               textAlign: TextAlign.justify,
+            ),
+          ),
+          Container(
+            width: 450,
+            height: 200,
+            child: MapScreen(
+              initialLatitude: lat,
+              initialLongitude: lon,
+              initialzoom: 15,
             ),
           ),
           SizedBox(

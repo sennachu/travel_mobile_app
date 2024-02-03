@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+//import 'package:travel_app/screens/loginScreen.dart';
 import 'package:travel_app/screens/welcomeScreen.dart';
 
 void main() {
@@ -19,7 +20,7 @@ class _MyAppState extends State<MyApp> {
   }
 
   // _welcomeScreen metodu eklendi
-  Widget _welcomeScreen() {
+  Widget _loginScreen() {
     return WelcomeScreen();
   }
 
@@ -30,7 +31,7 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
         scaffoldBackgroundColor: Color(0xFFEDF2F6),
       ),
-      home: _welcomeScreen(), // _welcomeScreen metodu kullanıldı
+      home: _loginScreen(), // _welcomeScreen metodu kullanıldı
     );
   }
 }

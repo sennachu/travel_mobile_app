@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:flutter/widgets.dart';
 import 'package:travel_app/screens/FavoritesScreen.dart';
 import 'package:travel_app/screens/LocationScreen.dart';
+import 'package:travel_app/screens/LoginScreen.dart';
 import 'package:travel_app/screens/homeScreen.dart';
 
 class HomeBottomBar extends StatefulWidget {
@@ -20,32 +22,41 @@ class _HomeBottomBarState extends State<HomeBottomBar> {
       onTap: (index) {
         setState(() {
           _selectedIndex = index;
-          switch (_selectedIndex) {
-            case 0:
-              // Favoriler sayfasına yönlendir
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => FavoritesScreen()),
-              );
-              break;
-            case 1:
-              // Ana sayfaya yönlendir
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => homeScreen()),
-              );
-              break;
-            case 2:
-              // Konum sayfasına yönlendir
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => LocationScreen()),
-              );
-              break;
-            default:
-              break;
-          }
         });
+
+        // Sayfa geçişini burada yapın
+        switch (_selectedIndex) {
+          case 0:
+            // Favoriler sayfasına yönlendir
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => FavoritesScreen()),
+            );
+            break;
+          case 1:
+            // Ana sayfaya yönlendir
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => homeScreen()),
+            );
+            break;
+          case 2:
+            // Konum sayfasına yönlendir
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => LocationScreen()),
+            );
+            break;
+          case 3:
+            // Konum sayfasına yönlendir
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => LoginScreen()),
+            );
+            break;
+          default:
+            break;
+        }
       },
       items: [
         Icon(
@@ -62,6 +73,11 @@ class _HomeBottomBarState extends State<HomeBottomBar> {
           Icons.location_on,
           size: 30,
           color: _selectedIndex == 2 ? Colors.redAccent : null,
+        ),
+        Icon(
+          Icons.supervised_user_circle,
+          size: 30,
+          color: _selectedIndex == 3 ? Colors.redAccent : null,
         ),
       ],
     );

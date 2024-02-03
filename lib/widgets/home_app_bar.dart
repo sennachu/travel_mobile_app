@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:travel_app/screens/welcomeScreen.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class HomeAppBar extends StatelessWidget {
@@ -11,7 +12,10 @@ class HomeAppBar extends StatelessWidget {
         children: [
           InkWell(
             onTap: () {
-              Navigator.pop(context);
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => WelcomeScreen()),
+              );
             },
             child: Container(
               padding: EdgeInsets.all(10),

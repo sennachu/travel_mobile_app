@@ -1,0 +1,54 @@
+[33mcommit 7bf12d1062c5e31f04b16f45b59cd88bacea62ce[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32msena[m[33m, [m[1;31morigin/sena[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Merge: 637d64f 5731a62
+Author: Neyfer Karakollu <mkarakollu74@gmail.com>
+Date:   Sat Feb 3 11:17:23 2024 +0300
+
+    Merge branch 'sena' of https://github.com/sennachu/travel_mobile_app into sena
+
+[33mcommit 637d64f56ad90ae5bc946222888188f28fb254f3[m
+Author: Neyfer Karakollu <mkarakollu74@gmail.com>
+Date:   Sat Feb 3 11:16:13 2024 +0300
+
+    Fast Login Image
+
+[33mcommit 5731a62786f4dcfbb606183f2ec5c629fa5504e1[m
+Author: Sena Bezirkan <90784360+sennachu@users.noreply.github.com>
+Date:   Sat Feb 3 10:47:36 2024 +0300
+
+    added login page, favorites and maps bug fixed
+
+[33mcommit d8c3ced7690076f3ae7db81173c12ccd29fe8a56[m
+Author: Neyfer Karakollu <mkarakollu74@gmail.com>
+Date:   Sat Feb 3 02:29:58 2024 +0300
+
+    fix comment and page
+
+[33mcommit 9aef68caceaee1c743bb356fe22f6459769c76f1[m
+Author: Neyfer Karakollu <mkarakollu74@gmail.com>
+Date:   Sat Feb 3 02:28:29 2024 +0300
+
+    add API to Home Screen
+
+[33mcommit 3d7655fc25ba0830465861a39b0703b4b2028cd0[m
+Author: Sena Bezirkan <90784360+sennachu@users.noreply.github.com>
+Date:   Fri Feb 2 08:11:16 2024 +0300
+
+    yanlıs dosya silindi
+
+[33mcommit 5ad83e75823fccd8ceb4beb7a66a836336f0d987[m
+Author: Sena Bezirkan <90784360+sennachu@users.noreply.github.com>
+Date:   Fri Feb 2 08:05:43 2024 +0300
+
+    map eklendi fakat mobilde hatalı, widgetlar duzenlendi, ext eklendi
+
+[33mcommit 4baad6c1ff020b965a5ddba7971c43871f8ca5e5[m
+Author: Neyfer Karakollu <mkarakollu74@gmail.com>
+Date:   Thu Feb 1 01:43:36 2024 +0300
+
+    Bug fix and API CONNECTION
+
+[33mcommit 77b2a8d847f62740ff3a82426a937204937ad5f7[m
+Author: Sena Bezirkan <90784360+sennachu@users.noreply.github.com>
+Date:   Wed Jan 31 11:58:57 2024 +0300
+
+    first commit

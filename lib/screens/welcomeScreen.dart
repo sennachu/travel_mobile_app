@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:travel_app/screens/homeScreen.dart';
-import 'package:travel_app/screens/postScreen.dart';
 
 class WelcomeScreen extends StatefulWidget {
   @override
@@ -37,24 +35,23 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
     }
   }
 */
-
-  Future<String> postData(String endpoint, Map<dynamic, dynamic> data) async {
-    var headers = {'X-APIKEY': '1234', 'PKEY': 'NSK'};
-    var dio = Dio();
-    var response = await dio.request(
+  var dio = Dio();
+  var headers = {'X-APIKEY': '1234', 'PKEY': 'NSK'};
+  Future<void> fetchData() async {
+    var response = await dio.get(
       'https://nsk.neyfer.tech/loginImageList',
-      options: Options(
-        method: 'GET',
-        headers: headers,
-      ),
+      options: Options(headers: headers),
     );
 
     if (response.statusCode == 200) {
-      return (json.encode(response.data));
-    } else {
-      print(response.statusMessage);
+      final List<dynamic> responseDataDistrictList = response.data['data'];
+
+      setState(() {
+        backgroundImage = responseDataDistrictList[0]["Image"].toString();
+        FullTextColor = parseColor(
+            responseDataDistrictList[0]["ImageTextColor"].toString());
+      });
     }
-    return "";
   }
 
   Color parseColor(String colorHex) {
@@ -68,24 +65,11 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
     return Color(int.parse(colorHex.substring(1), radix: 16) | 0xFF000000);
   }
 
-  Future<void> _initializeData() async {
-    var model = {};
-
-    final String x = await postData("loginImageList", model);
-
-    final Map<String, dynamic> responseData = json.decode(x);
-
-    backgroundImage = responseData["data"][0]["Image"];
-    FullTextColor = parseColor(responseData["data"][0]["ImageTextColor"]);
-
-    buttonColor = FullTextColor;
-  }
-
   @override
   void initState() {
     backgroundImage = "https://mfiles.alphacoders.com/597/597930.jpg";
-    _initializeData();
     super.initState();
+    fetchData();
   }
 
   @override

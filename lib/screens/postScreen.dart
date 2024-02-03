@@ -7,12 +7,16 @@ class postScreen extends StatelessWidget {
   final String text;
   final String puan;
   final String Aciklama;
+  final double lat;
+  final double lon;
   const postScreen({
     Key? key,
     required this.photo,
     required this.text,
     required this.puan,
     required this.Aciklama,
+    required this.lat,
+    required this.lon,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -31,7 +35,13 @@ class postScreen extends StatelessWidget {
           child: post_app_bar(),
         ),
         bottomNavigationBar: post_bottom_bar(
-            photo: photo, name: text, puan: puan, Aciklama: Aciklama),
+          photo: photo,
+          name: text,
+          puan: puan,
+          Aciklama: Aciklama,
+          lat: lat,
+          lon: lon,
+        ),
       ),
     );
   }
