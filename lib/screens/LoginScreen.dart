@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:travel_app/screens/homeScreen.dart';
+import 'package:travel_app/screens/registerScreen.dart';
 
 void main() {
   runApp(Login());
@@ -11,6 +12,7 @@ class Login extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: LoginScreen(),
     );
   }
@@ -99,7 +101,22 @@ class _LoginScreenState extends State<LoginScreen> {
                   }
                 }
               },
-              child: Text('Giriş Yap'),
+              child: Text(
+                'Giriş Yap',
+                style: TextStyle(color: Colors.redAccent),
+              ),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => RegisterScreen()),
+                );
+              },
+              child: Text(
+                "Kayıt ol",
+                style: TextStyle(color: Colors.redAccent),
+              ),
             ),
           ],
         ),

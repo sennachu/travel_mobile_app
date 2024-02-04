@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
-import 'package:flutter/widgets.dart';
 import 'package:travel_app/screens/FavoritesScreen.dart';
 import 'package:travel_app/screens/LocationScreen.dart';
 import 'package:travel_app/screens/LoginScreen.dart';
@@ -12,83 +10,68 @@ class HomeBottomBar extends StatefulWidget {
 }
 
 class _HomeBottomBarState extends State<HomeBottomBar> {
-  int _selectedIndex = 1; // Başlangıçta "Home" iconu seçili olsun
+  int _selectedIndex = 1; // Başlangıçta "Home" sayfası seçili olsun
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index; // Seçilen indeksi güncelle
+    });
+
+    switch (index) {
+      case 0:
+        // Favoriler sayfasına yönlendir
+        Navigator.of(context).push(
+          MaterialPageRoute(builder: (context) => FavoritesScreen()),
+        );
+        break;
+      case 1:
+        // Ana sayfaya yönlendir
+        Navigator.of(context).push(
+          MaterialPageRoute(builder: (context) => homeScreen()),
+        );
+        break;
+      case 2:
+        // Konum sayfasına yönlendir
+        Navigator.of(context).push(
+          MaterialPageRoute(builder: (context) => LocationScreen()),
+        );
+        break;
+      case 3:
+        // Çıkış yap
+        Navigator.of(context).push(
+          MaterialPageRoute(builder: (context) => LoginScreen()),
+        );
+        break;
+      default:
+        break;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    return CurvedNavigationBar(
+    return BottomNavigationBar(
+      currentIndex: _selectedIndex,
+      selectedItemColor: Color.fromARGB(0, 255, 82, 82),
       backgroundColor: Colors.transparent,
-      index: _selectedIndex,
-      onTap: (index) {
-        setState(() {
-          _selectedIndex = index;
-        });
-
-        // Sayfa geçişini burada yapın
-        switch (_selectedIndex) {
-          case 0:
-            // Favoriler sayfasına yönlendir
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => FavoritesScreen()),
-            );
-            break;
-          case 1:
-            // Ana sayfaya yönlendir
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => homeScreen()),
-            );
-            break;
-          case 2:
-            // Konum sayfasına yönlendir
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => LocationScreen()),
-            );
-            break;
-          case 3:
-            if (Login.PublicUsername == "") {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => LoginScreen()),
-              );
-              break;
-            }
-          default:
-            break;
-        }
-      },
+      onTap: _onItemTapped,
       items: [
-        Icon(
-          Icons.favorite,
-          size: 30,
-          color: _selectedIndex == 0 ? Colors.redAccent : null,
-        ),
-        Icon(
-          Icons.home,
-          size: 30,
-          color: _selectedIndex == 1 ? Colors.redAccent : null,
-        ),
-        Icon(
-          Icons.location_on,
-          size: 30,
-          color: _selectedIndex == 2 ? Colors.redAccent : null,
-        ),
-        Visibility(
-          visible: Login.PublicUsername == "" || Login.PublicUsername.isEmpty,
-          child: Icon(
-            Login.PublicUsername == ""
-                ? Icons.supervised_user_circle
-                : Icons.verified,
-            size: 30,
-            color: _selectedIndex == 2
-                ? Login.PublicUsername == ""
-                    ? Colors.redAccent
-                    : Colors.green
-                : null,
-          ),
-        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.favorite_outline, size: 30, color: Colors.black45),
+          label: 'Favorites',
+        ), // index 0
+        BottomNavigationBarItem(
+          icon: Icon(Icons.home, size: 30, color: Colors.black45),
+          label: 'Home',
+        ), // index 1
+        BottomNavigationBarItem(
+          icon:
+              Icon(Icons.location_on_outlined, size: 30, color: Colors.black45),
+          label: 'Location',
+        ), //index 2
+        BottomNavigationBarItem(
+          icon: Icon(Icons.logout_outlined, size: 30, color: Colors.black45),
+          label: 'Logout',
+        ), //index 3
       ],
     );
   }

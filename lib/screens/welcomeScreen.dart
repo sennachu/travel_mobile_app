@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:dio/dio.dart';
+import 'package:travel_app/screens/LoginScreen.dart';
 import 'package:travel_app/screens/homeScreen.dart';
 
 class WelcomeScreen extends StatefulWidget {
@@ -130,7 +131,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => homeScreen(),
+                        builder: (context) => LoginScreen(),
                       ),
                     );
                   },
