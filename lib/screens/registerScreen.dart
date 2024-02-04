@@ -50,7 +50,7 @@ class __RegisterScreenState extends State<_RegisterScreen> {
             children: [
               SizedBox(height: 20),
               Text(
-                'Kayıt Ol',
+                'Kayıt Ol', //
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
