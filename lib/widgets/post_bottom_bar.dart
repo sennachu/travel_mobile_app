@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
+import 'package:travel_app/screens/LoginScreen.dart';
 
 import 'dart:convert';
 
@@ -26,34 +27,7 @@ class post_bottom_bar extends StatelessWidget {
     required this.Guid,
     this.onShareBusinessInfo,
   }) : super(key: key);
-  Future<void> sendBusinessInfo() async {
-    var headers = {
-      'X-APIKEY': '1234',
-      'PKEY': 'NSK',
-      'Content-Type': 'application/json'
-    };
-    var data = json.encode({
-      "WPPhoneNumber": "905051539449",
-      "MsgContent":
-          "Mekan Bilgileri: [NSK] Adı: ${name} 🏰 [NSK] Açıklaması: ${Aciklama} 📝 [NSK] Puanı: ${puan} ⭐️",
-      "ImageUrl": photo
-    });
-    var dio = Dio();
-
-    try {
-      var response = await dio.post(
-        'https://nsk.neyfer.tech/sendWp',
-        options: Options(
-          headers: headers,
-        ),
-        data: data,
-      );
-
-      print("Response: ${response.data}");
-    } catch (e) {
-      print("Error: $e");
-    }
-  }
+  Future<void> sendBusinessInfo() async {}
 
   @override
   Widget build(BuildContext context) {
@@ -146,7 +120,40 @@ class post_bottom_bar extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 ElevatedButton(
-                  onPressed: onShareBusinessInfo,
+                  onPressed: () async {
+                    var dio = Dio();
+
+                    var headersAPI = {
+                      'X-APIKEY': '1234',
+                      'PKEY': 'NSK',
+                      'Content-Type': 'application/json'
+                    };
+                    var data = json.encode({"UserName": Login.PublicUsername});
+                    var response = await dio.request(
+                      'https://nsk.neyfer.tech/getPhoneNumber',
+                      options: Options(
+                        method: 'POST',
+                        headers: headersAPI,
+                      ),
+                      data: data,
+                    );
+                    var PhoneNumber = response.data["data"];
+                    try {
+                      var headers = {
+                        'Authorization': 'Basic cHJzOlByczc4NDVQcnMhKg=='
+                      };
+
+                      var response = await dio.request(
+                        'http://34.71.251.75:9000/api/Functions/SendImageWithWP?WPPhoneNumber=${PhoneNumber}&MsgContent=Mekan Bilgileri:%20%5CnAdı: ${name} 🏰%20%5CnAçıklaması: ${Aciklama} 📝%20%5CnPuanı: ${puan} ⭐️&ImageUrl=${photo}',
+                        options: Options(
+                          method: 'POST',
+                          headers: headers,
+                        ),
+                      );
+                    } catch (e) {
+                      print("Error: $e");
+                    }
+                  },
                   style: ElevatedButton.styleFrom(
                     padding: EdgeInsets.symmetric(
                       vertical: 15,

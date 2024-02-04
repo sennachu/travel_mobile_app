@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:travel_app/screens/homeScreen.dart';
@@ -68,37 +70,44 @@ class _LoginScreenState extends State<LoginScreen> {
                   'PKEY': 'NSK',
                   'Content-Type': 'application/json'
                 };
-                var data = {
+                var data = json.encode({
                   "UserEmail": emailController.text,
                   "UserPassword": passwordController.text
-                };
+                });
 
-                var dio = Dio();
-                var response = await dio.post(
-                  'https://nsk.neyfer.tech/checklogin',
-                  options: Options(
-                    headers: headers,
-                  ),
-                  data: data,
-                );
-                if (response.statusCode == 200) {
-                  final List<dynamic> responseDataDistrictList =
-                      response.data['data'];
-                  bool isUserLoggedIn = responseDataDistrictList
-                      .any((element) => element['UserName'] != null);
+                try {
+                  var dio = Dio();
+                  dio.interceptors.add(
+                      LogInterceptor(responseBody: true, requestBody: true));
+                  var response = await dio.post(
+                    'https://nsk.neyfer.tech/checklogin',
+                    options: Options(
+                      headers: headers,
+                    ),
+                    data: data,
+                  );
 
-                  if (isUserLoggedIn) {
-                    Login.PublicUsername =
-                        responseDataDistrictList[0]["UserName"];
+                  if (response.statusCode == 200) {
+                    final List<dynamic> responseDataDistrictList =
+                        response.data['data'];
 
-                    print(Login.PublicUsername);
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => homeScreen()),
-                    );
-                  } else {
-                    print('Giriş başarısız');
+                    bool isUserLoggedIn = responseDataDistrictList
+                        .any((element) => element['UserName'] != null);
+
+                    if (isUserLoggedIn) {
+                      Login.PublicUsername =
+                          responseDataDistrictList[0]["UserName"];
+
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => homeScreen()),
+                      );
+                    } else {
+                      print('Giriş başarısız');
+                    }
                   }
+                } catch (e) {
+                  print(e);
                 }
               },
               child: Text(

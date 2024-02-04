@@ -43,7 +43,7 @@ class _PostAppBarState extends State<post_app_bar> {
         ),
         data: data,
       );
-      print(response.data["data"]);
+
       setState(() {
         isFavori = response.data["data"];
       });
