@@ -28,6 +28,10 @@ class post_bottom_bar extends StatelessWidget {
     this.onShareBusinessInfo,
   }) : super(key: key);
   Future<void> sendBusinessInfo() async {}
+  void showSnackBar(BuildContext context, String message) {
+    final snackBar = SnackBar(content: Text(message));
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -150,6 +154,7 @@ class post_bottom_bar extends StatelessWidget {
                           headers: headers,
                         ),
                       );
+                      showSnackBar(context, "Mekan Bilgileri Gönderildi");
                     } catch (e) {
                       print("Error: $e");
                     }
