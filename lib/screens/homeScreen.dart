@@ -7,12 +7,15 @@ import 'package:travel_app/widgets/home_bottom_bar.dart';
 import '../widgets/home_app_bar.dart';
 import 'package:dio/dio.dart';
 
+import 'LoginScreen.dart';
+
 class homeScreen extends StatefulWidget {
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<homeScreen> {
+  String Username = Login.PublicUsername;
   List<Map<String, dynamic>> categorys = [];
   List<Map<String, dynamic>> places = [];
   List<Map<String, dynamic>> districts = [];
@@ -80,6 +83,7 @@ class _HomeScreenState extends State<homeScreen> {
   @override
   void initState() {
     super.initState();
+    print(Login.PublicUsername);
     fetchData();
   }
 
@@ -108,13 +112,13 @@ class _HomeScreenState extends State<homeScreen> {
                       children: [
                         for (Map<String, dynamic> district in districts)
                           CityCard(
-                            photo: district["DistrictImage"],
-                            cityName: district["DistrictName"],
-                            puan: district["DistrictRate"].toString(),
-                            Aciklama: district["DistrictDescription"],
-                            lat: district["DistrictLat"],
-                            lon: district["DistrictLon"],
-                          ),
+                              photo: district["DistrictImage"],
+                              cityName: district["DistrictName"],
+                              puan: district["DistrictRate"].toString(),
+                              Aciklama: district["DistrictDescription"],
+                              lat: district["DistrictLat"],
+                              lon: district["DistrictLon"],
+                              cityGuid: district["DistrictGuid"]),
                       ],
                     ),
                   ),
@@ -168,6 +172,7 @@ class _HomeScreenState extends State<homeScreen> {
                       Aciklama: place["PlaceDescription"],
                       lat: place["PlaceLat"],
                       lon: place["PlaceLon"],
+                      Guid: place["PlaceGuid"],
                     ),
                 ],
               ),

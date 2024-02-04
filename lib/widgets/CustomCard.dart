@@ -8,15 +8,17 @@ class CustomCard extends StatelessWidget {
   final String Aciklama;
   final double lat;
   final double lon;
-  const CustomCard({
-    Key? key,
-    required this.photo,
-    required this.text,
-    required this.puan,
-    required this.Aciklama,
-    required this.lat,
-    required this.lon,
-  }) : super(key: key);
+  final String Guid;
+  const CustomCard(
+      {Key? key,
+      required this.photo,
+      required this.text,
+      required this.puan,
+      required this.Aciklama,
+      required this.lat,
+      required this.lon,
+      required this.Guid})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +38,7 @@ class CustomCard extends StatelessWidget {
                     Aciklama: Aciklama,
                     lat: lat,
                     lon: lon,
+                    Guid: Guid,
                   ),
                 ),
               );

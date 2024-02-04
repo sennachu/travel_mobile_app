@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:travel_app/screens/homeScreen.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(Login());
 }
 
-class MyApp extends StatelessWidget {
+class Login extends StatelessWidget {
+  static String PublicUsername = "";
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -85,8 +86,15 @@ class _LoginScreenState extends State<LoginScreen> {
                       .any((element) => element['UserName'] != null);
 
                   if (isUserLoggedIn) {
+                    Login.PublicUsername =
+                        responseDataDistrictList[0]["UserName"];
+
+                    print(Login.PublicUsername);
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => homeScreen()),
+                    );
                   } else {
-                    // Kullanıcı giriş yapmamışsa
                     print('Giriş başarısız');
                   }
                 }

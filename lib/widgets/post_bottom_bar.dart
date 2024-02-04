@@ -12,6 +12,7 @@ class post_bottom_bar extends StatelessWidget {
   final String Aciklama;
   final double lat;
   final double lon;
+  final String Guid;
   final VoidCallback? onShareBusinessInfo;
 
   const post_bottom_bar({
@@ -22,6 +23,7 @@ class post_bottom_bar extends StatelessWidget {
     required this.Aciklama,
     required this.lat,
     required this.lon,
+    required this.Guid,
     this.onShareBusinessInfo,
   }) : super(key: key);
   Future<void> sendBusinessInfo() async {

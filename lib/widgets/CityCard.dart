@@ -3,6 +3,7 @@ import 'package:travel_app/screens/postScreen.dart';
 
 class CityCard extends StatelessWidget {
   final String cityName;
+  final String cityGuid;
   final String photo;
   final String puan;
   final String Aciklama;
@@ -11,6 +12,7 @@ class CityCard extends StatelessWidget {
   const CityCard({
     Key? key,
     required this.cityName,
+    required this.cityGuid,
     required this.photo,
     required this.puan,
     required this.Aciklama,
@@ -26,13 +28,13 @@ class CityCard extends StatelessWidget {
           context,
           MaterialPageRoute(
             builder: (context) => postScreen(
-              photo: photo,
-              text: cityName,
-              puan: puan,
-              Aciklama: Aciklama,
-              lat: lat,
-              lon: lon,
-            ),
+                photo: photo,
+                text: cityName,
+                puan: puan,
+                Aciklama: Aciklama,
+                lat: lat,
+                lon: lon,
+                Guid: cityGuid),
           ),
         );
       },

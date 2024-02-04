@@ -48,12 +48,13 @@ class _HomeBottomBarState extends State<HomeBottomBar> {
             );
             break;
           case 3:
-            // Konum sayfasına yönlendir
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => LoginScreen()),
-            );
-            break;
+            if (Login.PublicUsername == "") {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => LoginScreen()),
+              );
+              break;
+            }
           default:
             break;
         }
@@ -74,10 +75,19 @@ class _HomeBottomBarState extends State<HomeBottomBar> {
           size: 30,
           color: _selectedIndex == 2 ? Colors.redAccent : null,
         ),
-        Icon(
-          Icons.supervised_user_circle,
-          size: 30,
-          color: _selectedIndex == 3 ? Colors.redAccent : null,
+        Visibility(
+          visible: Login.PublicUsername == "" || Login.PublicUsername.isEmpty,
+          child: Icon(
+            Login.PublicUsername == ""
+                ? Icons.supervised_user_circle
+                : Icons.verified,
+            size: 30,
+            color: _selectedIndex == 2
+                ? Login.PublicUsername == ""
+                    ? Colors.redAccent
+                    : Colors.green
+                : null,
+          ),
         ),
       ],
     );

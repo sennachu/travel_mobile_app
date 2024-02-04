@@ -9,15 +9,17 @@ class postScreen extends StatelessWidget {
   final String Aciklama;
   final double lat;
   final double lon;
-  const postScreen({
-    Key? key,
-    required this.photo,
-    required this.text,
-    required this.puan,
-    required this.Aciklama,
-    required this.lat,
-    required this.lon,
-  }) : super(key: key);
+  final String Guid;
+  const postScreen(
+      {Key? key,
+      required this.photo,
+      required this.text,
+      required this.puan,
+      required this.Aciklama,
+      required this.lat,
+      required this.lon,
+      required this.Guid})
+      : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -32,16 +34,16 @@ class postScreen extends StatelessWidget {
         backgroundColor: Colors.transparent,
         appBar: PreferredSize(
           preferredSize: Size.fromHeight(90),
-          child: post_app_bar(),
+          child: post_app_bar(favoriPlaceId: Guid),
         ),
         bottomNavigationBar: post_bottom_bar(
-          photo: photo,
-          name: text,
-          puan: puan,
-          Aciklama: Aciklama,
-          lat: lat,
-          lon: lon,
-        ),
+            photo: photo,
+            name: text,
+            puan: puan,
+            Aciklama: Aciklama,
+            lat: lat,
+            lon: lon,
+            Guid: Guid),
       ),
     );
   }
