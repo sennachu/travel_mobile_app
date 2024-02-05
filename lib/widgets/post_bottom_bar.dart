@@ -148,7 +148,7 @@ class post_bottom_bar extends StatelessWidget {
                       };
 
                       var response = await dio.request(
-                        'http://34.71.251.75:9000/api/Functions/SendImageWithWP?WPPhoneNumber=${PhoneNumber}&MsgContent=Mekan Bilgileri:%20%5CnAdı: ${name} 🏰%20%5CnAçıklaması: ${Aciklama} 📝%20%5CnPuanı: ${puan} ⭐️&ImageUrl=${photo}',
+                        'https://api.neyfer.tech/api/Functions/SendImageWithWP?WPPhoneNumber=${PhoneNumber}&MsgContent=Mekan Bilgileri:%20%5CnAdı: ${name} 🏰%20%5CnAçıklaması: ${Aciklama} 📝%20%5CnPuanı: ${puan} ⭐️&ImageUrl=${photo}',
                         options: Options(
                           method: 'POST',
                           headers: headers,
